@@ -41,6 +41,7 @@ public class MyDataBaseAdapter {
             String password = cursor.getString(index3);
             buffer.append(cid + " " + name + " " + password + "\n");
         }
+
         return buffer.toString();
     }
 
