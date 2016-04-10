@@ -59,6 +59,22 @@ public class MyDataBaseAdapter {
         return buffer.toString();
     }
 
+    public int updateName(String oldName, String newName) {
+        SQLiteDatabase db = mySQLHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MySQLHelper.NAME, newName);
+        String[] whereArgs = {oldName};
+        int count = db.update(MySQLHelper.TABLE_NAME, contentValues, MySQLHelper.NAME + " =? ", whereArgs);
+        return count;
+    }
+
+    public int deleteRow(String nameToDelete) {
+        SQLiteDatabase db = mySQLHelper.getWritableDatabase();
+        String[] whereArgs= {nameToDelete};
+        int count = db.delete(MySQLHelper.TABLE_NAME, MySQLHelper.NAME + " =? ", whereArgs);
+        return count;
+    }
+
     class MySQLHelper extends SQLiteOpenHelper {
 
         private static final String DATABASE_NAME = "mydatabase";

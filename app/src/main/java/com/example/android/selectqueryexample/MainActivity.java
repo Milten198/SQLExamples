@@ -58,4 +58,14 @@ public class MainActivity extends AppCompatActivity {
 
         Message.message(this, s3);
     }
+
+    public void update(View view) {
+        myDataBaseAdapter = new MyDataBaseAdapter(this);
+        myDataBaseAdapter.updateName("test", "Milten");
+    }
+
+    public void delete(View view) {
+        myDataBaseAdapter = new MyDataBaseAdapter(this);
+        myDataBaseAdapter.deleteRow("Milten");
+    }
 }
