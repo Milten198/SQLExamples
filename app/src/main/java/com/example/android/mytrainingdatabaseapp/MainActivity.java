@@ -25,4 +25,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AllRecordsDisplay.class);
         startActivity(intent);
     }
+
+    public void showSpecificRecords(View view) {
+        Intent intent = new Intent(this, SpecificRecordsDisplay.class);
+        startActivity(intent);
+    }
 }

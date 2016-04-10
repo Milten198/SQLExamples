@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".AllRecordsDisplay"/>
         <activity android:name=".AddUserComponent"/>
+        <activity android:name=".SpecificRecordsDisplay"/>
     </application>
 
 </manifest>

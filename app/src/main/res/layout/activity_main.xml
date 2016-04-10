@@ -27,4 +27,14 @@
         android:layout_centerHorizontal="true"
         android:onClick="showAll"
         android:text="Show All users" />
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Show specific records"
+        android:id="@+id/button4"
+        android:layout_below="@+id/showAllButton"
+        android:layout_centerHorizontal="true"
+        android:onClick="showSpecificRecords"/>
+
 </RelativeLayout>

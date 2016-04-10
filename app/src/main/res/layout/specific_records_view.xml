@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#336699">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Find by"
+        android:id="@+id/findByTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="28dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_alignBottom="@+id/findByTextView"
+        android:layout_toRightOf="@+id/findByTextView"
+        android:layout_toEndOf="@+id/findByTextView"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/valueEditText"
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/findByTextView"
+        android:layout_alignLeft="@+id/spinner"
+        android:layout_alignStart="@+id/spinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Value"
+        android:id="@+id/valueTextView"
+        android:layout_alignBottom="@+id/valueEditText"
+        android:layout_alignLeft="@+id/findByTextView"
+        android:layout_alignStart="@+id/findByTextView" />
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:id="@+id/backFromSpecificRecords"
+        android:onClick="backFromSpecificRecords"
+        android:layout_below="@+id/button3"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/button3"
+        android:layout_marginTop="53dp"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:onClick="searchRecords"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:background="#E3F2FD"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_below="@+id/valueEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
+
+</RelativeLayout>
