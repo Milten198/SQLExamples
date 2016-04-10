@@ -41,5 +41,22 @@
         android:layout_centerHorizontal="true"
         android:onClick="displayData"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Details"
+        android:id="@+id/button3"
+        android:layout_below="@+id/editText3"
+        android:layout_centerHorizontal="true"
+        android:onClick="getDetails"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText3"
+        android:hint="Enter the name whose password you want"
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

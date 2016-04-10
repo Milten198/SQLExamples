@@ -2,6 +2,7 @@ package com.example.android.selectqueryexample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -10,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText nameText;
     EditText passwordText;
+    EditText getDetailsText;
     MyDataBaseAdapter myDataBaseAdapter;
 
     @Override
@@ -43,5 +45,17 @@ public class MainActivity extends AppCompatActivity {
         myDataBaseAdapter = new MyDataBaseAdapter(this);
         String data = myDataBaseAdapter.getAllData();
         Message.message(this, data);
+    }
+
+    public void getDetails(View view) {
+        getDetailsText = (EditText) findViewById(R.id.editText3);
+        String name = getDetailsText.getText().toString();
+        String sub1 = name.substring(0, name.indexOf(" "));
+        Log.v("DUPA", "sub1" + sub1);
+        String sub2 = name.substring(name.indexOf(" ") + 1);
+        Log.v("DUPA", "sub2" + sub2);
+        String s3 = myDataBaseAdapter.getData(sub1, sub2);
+
+        Message.message(this, s3);
     }
 }

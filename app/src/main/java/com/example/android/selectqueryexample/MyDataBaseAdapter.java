@@ -41,14 +41,28 @@ public class MyDataBaseAdapter {
             String password = cursor.getString(index3);
             buffer.append(cid + " " + name + " " + password + "\n");
         }
+        return buffer.toString();
+    }
 
+    public String getData(String name, String password) {
+        SQLiteDatabase db = mySQLHelper.getWritableDatabase();
+        String[] columns = {MySQLHelper.UID};
+        String[] selectionArgs = {name, password};
+
+        Cursor cursor = db.query(MySQLHelper.TABLE_NAME, columns, MySQLHelper.NAME + "=? AND " + MySQLHelper.PASSWORD + "=? ", selectionArgs, null, null, null);
+        StringBuffer buffer = new StringBuffer();
+        while (cursor.moveToNext()) {
+            int index1 = cursor.getColumnIndex(MySQLHelper.UID);
+            int personID = cursor.getInt(index1);
+            buffer.append(personID + "\n");
+        }
         return buffer.toString();
     }
 
     class MySQLHelper extends SQLiteOpenHelper {
 
         private static final String DATABASE_NAME = "mydatabase";
-        private static final int DATABASE_VERSION =1;
+        private static final int DATABASE_VERSION = 1;
         private static final String TABLE_NAME = "MYTABLE";
         private static final String NAME = "NAME";
         private static final String PASSWORD = "PASSWORD";
@@ -62,7 +76,6 @@ public class MyDataBaseAdapter {
         public MySQLHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
             this.context = context;
-            Message.message(context, "constructor called");
         }
 
 
