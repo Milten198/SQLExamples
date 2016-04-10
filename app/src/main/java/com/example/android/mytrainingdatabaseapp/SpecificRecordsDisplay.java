@@ -8,49 +8,27 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
-public class SpecificRecordsDisplay extends AppCompatActivity{
+public class SpecificRecordsDisplay extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    EditText valueEditText;
+    EditText valueEditText, specificRecordsDisplayEditText;
     TextView valueTextView, findByTextView;
     Spinner spinner;
     String[] spinnerValues = {"id", "Name", "Surname", "Phone"};
+    MyDatabaseAdapter databaseAdapter;
+    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.specific_records_view);
-        valueEditText = (EditText) findViewById(R.id.valueEditText);
+
         spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerValues);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ToastMessage.message(getApplicationContext(), "You have chosen " + position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                valueEditText.setText("Choose searching parameter and type value");
-            }
-        });
-    }
-
-    public void findById() {
-
-    }
-
-    public void findByName() {
-
-    }
-
-    public void findBySurname() {
-
-    }
-
-    public void findByPhoneNumber() {
+        spinner.setOnItemSelectedListener(this);
 
     }
 
@@ -59,4 +37,36 @@ public class SpecificRecordsDisplay extends AppCompatActivity{
         startActivity(intent);
     }
 
+    public void search(View view) {
+        databaseAdapter = new MyDatabaseAdapter(this);
+        specificRecordsDisplayEditText = (EditText) findViewById(R.id.specificRecordsDisplay);
+        valueEditText = (EditText) findViewById(R.id.valueEditText);
+        String value = valueEditText.getText().toString();
+        String record;
+        if (position == 0) {
+            record = databaseAdapter.findById(value);
+            specificRecordsDisplayEditText.setText(record);
+        } else if (position == 1) {
+            record = databaseAdapter.findByName(value);
+            specificRecordsDisplayEditText.setText(record);
+        } else if (position ==2) {
+            record = databaseAdapter.findBySurname(value);
+            specificRecordsDisplayEditText.setText(record);
+        } else if (position == 3) {
+            record = databaseAdapter.findByPhoneNumber(value);
+            specificRecordsDisplayEditText.setText(record);
+        } else {
+            ToastMessage.message(this, "Something went wrong");
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        this.position = position;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        ToastMessage.message(this, "Something went wrong");
+    }
 }

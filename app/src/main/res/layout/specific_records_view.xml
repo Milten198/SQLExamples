@@ -62,15 +62,15 @@
         android:text="Search"
         android:id="@+id/button3"
         android:layout_marginTop="53dp"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/specificRecordsDisplay"
         android:layout_centerHorizontal="true"
-        android:onClick="searchRecords"/>
+        android:onClick="search"/>
 
     <EditText
         android:layout_width="300dp"
         android:background="#E3F2FD"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/specificRecordsDisplay"
         android:layout_below="@+id/valueEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="45dp" />

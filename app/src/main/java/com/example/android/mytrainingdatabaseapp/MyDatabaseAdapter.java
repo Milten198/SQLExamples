@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
 
 public class MyDatabaseAdapter {
 
@@ -29,19 +30,63 @@ public class MyDatabaseAdapter {
         SQLiteDatabase db = myHelper.getWritableDatabase();
         String[] columns = {MyHelper.UID, MyHelper.NAME, MyHelper.SURNAME, MyHelper.PHONE};
         Cursor cursor = db.query(MyHelper.TABLE_NAME, columns, null, null, null, null, null);
+        StringBuffer buffer = getStringBuffer(cursor);
+        return buffer.toString();
+    }
+
+    public String findById(String id) {
+        SQLiteDatabase db = myHelper.getWritableDatabase();
+        String[] columns = {MyHelper.UID, MyHelper.NAME, MyHelper.SURNAME, MyHelper.PHONE};
+        String[] stringsArgs = {id};
+        Cursor cursor = db.query(MyHelper.TABLE_NAME, columns, MyHelper.UID + "=?", stringsArgs, null, null, null);
+        StringBuffer buffer = getStringBuffer(cursor);
+        return buffer.toString();
+    }
+
+    public String findByName(String name) {
+        SQLiteDatabase db = myHelper.getWritableDatabase();
+        String[] columns = {MyHelper.UID, MyHelper.NAME, MyHelper.SURNAME, MyHelper.PHONE};
+        String[] stringsArgs = {name};
+        Cursor cursor = db.query(MyHelper.TABLE_NAME, columns, MyHelper.NAME + "=?", stringsArgs, null, null, null);
+        StringBuffer buffer = getStringBuffer(cursor);
+        return buffer.toString();
+    }
+
+    public String findBySurname(String surname) {
+        SQLiteDatabase db = myHelper.getWritableDatabase();
+        String[] columns = {MyHelper.UID, MyHelper.NAME, MyHelper.SURNAME, MyHelper.PHONE};
+        String[] stringsArgs = {surname};
+        Cursor cursor = db.query(MyHelper.TABLE_NAME, columns, MyHelper.SURNAME + "=?", stringsArgs, null, null, null);
+        StringBuffer buffer = getStringBuffer(cursor);
+        return buffer.toString();
+    }
+
+    public String findByPhoneNumber(String phone) {
+        SQLiteDatabase db = myHelper.getWritableDatabase();
+        String[] columns = {MyHelper.UID, MyHelper.NAME, MyHelper.SURNAME, MyHelper.PHONE};
+        String[] stringsArgs = {phone};
+        Cursor cursor = db.query(MyHelper.TABLE_NAME, columns, MyHelper.PHONE + "=?", stringsArgs, null, null, null);
+        StringBuffer buffer = getStringBuffer(cursor);
+        return buffer.toString();
+    }
+
+
+
+    @NonNull
+    private StringBuffer getStringBuffer(Cursor cursor) {
         StringBuffer buffer = new StringBuffer();
         while (cursor.moveToNext()) {
-            int id = cursor.getColumnIndex(MyHelper.UID);
+            int cid = cursor.getColumnIndex(MyHelper.UID);
             int nameId = cursor.getColumnIndex(MyHelper.NAME);
             int surnameId = cursor.getColumnIndex(MyHelper.SURNAME);
             int phoneId = cursor.getColumnIndex(MyHelper.PHONE);
-            int recordId = cursor.getInt(id);
+            int recordId = cursor.getInt(cid);
             String name = cursor.getString(nameId);
             String surname = cursor.getString(surnameId);
             String phone = cursor.getString(phoneId);
             buffer.append(recordId + " " + name + " " + surname + " " + phone + "\n");
         }
-        return buffer.toString();
+        return buffer;
     }
 
 
